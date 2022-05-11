@@ -4,13 +4,17 @@ Date : 05/2022
 Projet : page Dronépik NSI première - HTML/CSS/JS/PHP 
  -->
 
+ <style>
+    <?php include 'style.css' ?>
+</style>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> Je ne comprend pas pourquoi simplement avec ces balises le site bug, c'est pourquoi je l'ai inclus dans des balises php-->
     <title>Commande</title>
 	<link rel="icon" type="image/png" href="images/favicon.jpg" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

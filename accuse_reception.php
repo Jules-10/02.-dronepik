@@ -143,7 +143,7 @@ function commentaire_supplementaire() {
 
 	// redirection vers la page principale
 	function nouvelleCommande(){
-		document.location.href="dronepik.html";
+		document.location.href="dronepik.php";
 	}
 </script>
 

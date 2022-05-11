@@ -94,6 +94,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 
 	// redirection vers la page principale
 	function nouvelleCommande(){
-		document.location.href="dronepik.html";
+		document.location.href="dronepik.php";
 	}
 </script>
