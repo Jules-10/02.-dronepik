@@ -1,23 +1,21 @@
 <?php
-function lire_fichier_commandes()
-{
+
+function lire_fichier_commandes() {
     $table = "";
     # on lit le fichier et on ajoute ligne par ligne
-
-
+    $fichier = fopen("commande.csv", "r");
     # on vérifie que le fichier a bien été ouvert
+    if ($fichier) {
+        # tant que on arrive à lire une ligne
+        $ligne = fgetcsv($fichier, 1000, ";"); # on lit la 1ère ligne
+        while ($ligne) {
+            $table = $table . "<tr><td>$ligne[0]</td><td>$ligne[1]</td><td>$ligne[2]</td></tr>\n";
+            $ligne = fgetcsv($fichier, 1000, ";"); # on lit la ligne suivante
+        }
+    }
+    return $table;
+}
 
-
-    # tant que on arrive à lire une ligne
-    while ?????? :
-        # on ajoute la commande à la variable $table
-        
-        
-        # on lit la ligne suivante
-
-
-
-    return $table
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +62,9 @@ function lire_fichier_commandes()
 			<td>Prix</td>
 			<td id="prix"></td>
 		</tr>
+
+        <?php echo lire_fichier_commandes(); ?>
+
 	</table>
 
 	<p id="msgCommentaire">Nous avons bien noté votre commentaire, et en tiendrons compte ! ;)</p>
