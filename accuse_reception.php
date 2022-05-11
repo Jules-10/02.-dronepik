@@ -78,7 +78,6 @@ function lire_commande() {
 function commentaire_supplementaire() {
     $infos = lire_commande();
     $commentaire = $infos[7]; # récupère le champ du commentaire
-    # du style y est directement appliqué car ne fonctionne pas avec le CSS (le CSS doit être pris en compte avant le PHP)
     $message = "<p id='messageCommentaire' style='opacity: 0.8; margin-top: 10px;'>A très vite !";
     if ($commentaire != ""){
         $message = "<p id='messageCommentaire' style='opacity: 0.8; margin-top: 10px;'>Nous avons bien pris en compte votre commentaire et vous en remercions.<br>A très vite !";
@@ -88,6 +87,14 @@ function commentaire_supplementaire() {
 }
 
 ?>
+
+
+<!-- Pour que le CSS s'applique au PHP -->
+<style>
+    <?php include 'style.css' ?>
+</style>
+
+
 
 <html lang="fr">
 <head>

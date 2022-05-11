@@ -166,3 +166,11 @@ tr:hover{
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
+
+table.admin tr:first-child{
+	font-weight: 700;
+	border-bottom-width: 3px;
+}
+table.admin{
+	margin: 2em;
+}

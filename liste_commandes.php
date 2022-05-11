@@ -36,7 +36,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
                     <td>$ligne[5]</td>
                     <td>$ligne[6]</td>
                     <td>$ligne[7]</td>
-                    <td>$ligne[8]</td>
                     </tr>\n";
                 $ligne = fgetcsv($fichier, 1000, ";"); # on lit la ligne suivante
             }
@@ -44,6 +43,12 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
         return $table;
     }
 ?>
+
+<!-- Pour que le CSS s'applique au PHP -->
+<style>
+    <?php include 'style.css' ?>
+</style>
+
 
 <html lang="fr">
 <head>
@@ -53,14 +58,13 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
     <link rel="icon" type="image/png" href="images/favicon.jpg" />
 </head>
 
-
 <body>
     <header>
         <p id="pub"><img  src="./images/pub.png" alt="bannière Dronépik"></p>    
 		<h1>Liste des commandes passées</h1>
 	</header>
 
-    <table>
+    <table class="admin">
         <?php echo tableau_commandes(); ?>
 	</table>
 
@@ -78,6 +82,20 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 </html>
 
 <script>
+
+    // fonctions quand on passe la souris sur un bouton, et quand on en sort
+	function overButton(elmtID){
+		button = document.getElementById(elmtID);
+		button.style.filter = "brightness(1.1)";
+		button.style.border = "solid 2px #6b616f"
+		button.style.padding = "8px 28px";
+	}
+	function notOverButton(elmtID){
+		button = document.getElementById(elmtID);
+		button.style.filter = "brightness(1)";
+		button.style.border = "none";
+		button.style.padding = "10px 30px";
+	}
 
 	// redirection vers la page principale
 	function nouvelleCommande(){
