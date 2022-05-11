@@ -32,6 +32,6 @@
         fclose($fichier);
     }
     # on rappelle la page d'accueil
-    header("Location: accuse.html");
+    header("Location: affiche_cmd.php");
 
 ?>
