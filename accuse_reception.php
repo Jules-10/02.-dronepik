@@ -89,7 +89,6 @@ function commentaire_supplementaire() {
 
 ?>
 
-<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset='utf-8'>
@@ -106,7 +105,7 @@ function commentaire_supplementaire() {
     <h3> Merci pour votre commande ! Nous en accusons réception.</h3>
 	<h4>Voici un récapitulatif de toutes vos coordonnées ainsi que de la fiche technique du Dronépik :</h4>
 
-	<table id="infos">
+	<table>
         <?php echo lire_commande(); ?>
 	</table>
 
