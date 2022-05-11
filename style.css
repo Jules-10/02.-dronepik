@@ -65,12 +65,30 @@ form > *{
 	gap: 20px;
 }
 input.action {
-	padding: 1em 5em;
-	background-color: #B3A2B9;
-	border: none;
+	padding: .8em 1.6em;
+	background-color: transparent;
+	font-size: 1em;
+	font-weight: 500;
+	border-radius: 100%;
+	border: 2px solid #000;
 	border-radius: 5px;
 	align-self: center;
+	transition: .5s;
 }
+
+input.action.full{
+	background-color: #000;
+	color: #ffe1b5;
+}
+input.action:hover,
+input.action:active{
+	background-color: #ffe1b5;
+	color: #000;
+	border: 2px solid transparent;
+	border-bottom: 2px solid #000;
+	border-radius: 0;
+}
+
 
 form .zoneText , form select{
 	min-width: 200px;
@@ -125,9 +143,7 @@ textarea{
 
 /* affichage du footer */
 footer{
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	margin-top: 15px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

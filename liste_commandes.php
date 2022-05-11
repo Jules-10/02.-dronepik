@@ -54,7 +54,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 <head>
     <meta charset='utf-8'>
     <title>Admin Dronépik - liste commandes</title>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <link rel="icon" type="image/png" href="images/favicon.jpg" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -73,7 +72,7 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
         <?php echo tableau_commandes(); ?>
 	</table>
 
-    <input type="button" value="Commander un Dronépik" onmouseover="overButton('nouvelle_commande')" onmouseout="notOverButton('nouvelle_commande')" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
+    <input type="button" value="Commander un Dronépik" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
 
 	<footer>
 		<p>© Jules Tennenbaum - NSI Joliot Curie - 11/05/2022</p>
@@ -92,20 +91,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
     $(window).on("load",function(){
         $(".loader-wrapper").fadeOut("slow");
     });
-
-    // fonctions quand on passe la souris sur un bouton, et quand on en sort
-	function overButton(elmtID){
-		button = document.getElementById(elmtID);
-		button.style.filter = "brightness(1.1)";
-		button.style.border = "solid 2px #6b616f"
-		button.style.padding = "8px 28px";
-	}
-	function notOverButton(elmtID){
-		button = document.getElementById(elmtID);
-		button.style.filter = "brightness(1)";
-		button.style.border = "none";
-		button.style.padding = "10px 30px";
-	}
 
 	// redirection vers la page principale
 	function nouvelleCommande(){
