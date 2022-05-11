@@ -4,27 +4,34 @@ Date : 05/2022
 Projet : page Dronépik NSI première - HTML/CSS/JS/PHP 
  -->
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"></head>
+    <link rel="stylesheet" href="style.css">
     <title>Commande</title>
 	<link rel="icon" type="image/png" href="images/favicon.jpg" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
 <body>
+
     <header>
         <img  src="./images/pub.png" alt="bannière Dronépik">
 		<h1>Formulaire de commande</h1>
 	</header>
+
+
+	<div class="loader-wrapper">
+		<span class="loader"><span class="loader-inner"></span></span>
+	  </div>
 	
+
     <form action="enregistre_cmd.php" method="GET">
 		<p id="messageBienvenue">Bonjour !</p>
 
-		<!-- la zone à compléter avec les différents éléments de formulaire -->
-		
 		<div class="plusieursChamps">
 			<label>Nom : </label>
 			<input type="text" value="" onmouseout="getNoms()" id="saisiePrenom" class="zoneText" placeholder="Prénom" name="prenom" required>
@@ -96,8 +103,13 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 
 
 
-
+	
 <script>
+
+	// page loading animation
+	$(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
 
 	// récupère les noms et modifie l'affichage en conséquent
 	function getNoms(){

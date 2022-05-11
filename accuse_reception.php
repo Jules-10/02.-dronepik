@@ -94,20 +94,25 @@ function commentaire_supplementaire() {
     <?php include 'style.css' ?>
 </style>
 
-
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset='utf-8'>
     <title>Accusé commande Dronépik</title>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <link rel="icon" type="image/png" href="images/favicon.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
+
 <body>
     <header>
         <p id="pub"><img  src="./images/pub.png" alt="bannière Dronépik"></p>    
 		<h1>Accusé de réception</h1>
 	</header>
+
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
 	
     <h3> Merci pour votre commande ! Nous en accusons réception.</h3>
 	<h4>Voici un récapitulatif de toutes vos coordonnées ainsi que de la fiche technique du Dronépik :</h4>
@@ -132,6 +137,10 @@ function commentaire_supplementaire() {
 
 
 <script>
+    // page loading animation
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
 
 	// redirection vers la page principale
 	function nouvelleCommande(){

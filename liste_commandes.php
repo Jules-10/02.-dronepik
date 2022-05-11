@@ -49,13 +49,14 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
     <?php include 'style.css' ?>
 </style>
 
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset='utf-8'>
     <title>Admin Dronépik - liste commandes</title>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
     <link rel="icon" type="image/png" href="images/favicon.jpg" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -63,6 +64,10 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
         <p id="pub"><img  src="./images/pub.png" alt="bannière Dronépik"></p>    
 		<h1>Liste des commandes passées</h1>
 	</header>
+
+    <div class="loader-wrapper">
+      <span class="loader"><span class="loader-inner"></span></span>
+    </div>
 
     <table class="admin">
         <?php echo tableau_commandes(); ?>
@@ -82,6 +87,11 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 </html>
 
 <script>
+
+    // page loading animation
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
 
     // fonctions quand on passe la souris sur un bouton, et quand on en sort
 	function overButton(elmtID){
