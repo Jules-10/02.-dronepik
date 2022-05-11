@@ -1,17 +1,27 @@
 <?php
 
-function lire_fichier_commandes() {
+function lire_commande() {
     $table = "";
     # on lit le fichier et on ajoute ligne par ligne
-    $fichier = fopen("commande.csv", "r");
+    $fichier = file("commande.csv", FILE_IGNORE_NEW_LINES);
     # on vérifie que le fichier a bien été ouvert
     if ($fichier) {
         # tant que on arrive à lire une ligne
-        $ligne = fgetcsv($fichier, 1000, ";"); # on lit la 1ère ligne
-        while ($ligne) {
-            $table = $table . "<tr><td>$ligne[0]</td><td>$ligne[1]</td><td>$ligne[2]</td></tr>\n";
-            $ligne = fgetcsv($fichier, 1000, ";"); # on lit la ligne suivante
-        }
+        $line = $fichier[count($fichier)-2];
+        $fields = explode(";", $line);
+        $prix=10;
+        $table = "
+        <tr> <td>Nom et prénom</td> <td>{$fields[0]}</td> </tr>
+        <tr> <td>Contact</td> <td>{$fields[1]}, {$fields[2]}</td> </tr>
+        <tr> <td>Adresse de livraison</td> <td>{$fields[3]}</td> </tr>
+
+        <tr class='doubleBorderTop'> <td>Modèle commandé</td> <td>{$fields[4]}</td> </tr>
+        <tr> <td>Résolution</td> <td>{$fields[5]}</td> </tr>
+        <tr> <td>Options supplémentaires</td> <td>{$fields[6]}</td> </tr>
+
+        <tr class='doubleBorderTop'> <td>Prix</td> <td>{$prix}</td> </tr>
+
+        </tr>";
     }
     return $table;
 }
@@ -34,7 +44,7 @@ function lire_fichier_commandes() {
     <h3> Merci pour votre commande ! Nous en accusons réception.</h3>
 	<h4>Voici un récapitulatif de toutes vos coordonnées ainsi que de la fiche technique du Dronépik :</h4>
 	<table id="infos">
-        <tr> 
+        <!-- <tr> 
 			<td>Nom et prénom</td>
 			<td id="noms"></td>
 		</tr>
@@ -61,9 +71,9 @@ function lire_fichier_commandes() {
 		<tr class="doubleBorderTop">
 			<td>Prix</td>
 			<td id="prix"></td>
-		</tr>
+		</tr> -->
 
-        <?php echo lire_fichier_commandes(); ?>
+        <?php echo lire_commande(); ?>
 
 	</table>
 
