@@ -120,6 +120,9 @@ textarea{
 
 /* affichage du footer */
 footer{
+	position: absolute;
+	bottom: 0;
+	left: 0;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -181,10 +184,10 @@ table.admin{
 .loader-wrapper {
 	width: 100%;
 	height: 100%;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
-	background-color: #242f3f;
+	background-color: hsl(252, 40%, 10%); /* hue complémentaire avec la couleur principale du site (luminosité et contraste baissés) */
 	display:flex;
 	justify-content: center;
 	align-items: center;

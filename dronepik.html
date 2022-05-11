@@ -89,8 +89,10 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 		
 		
 		<!-- le bouton d'enregistrement du formulaire -->
-		<input type="submit" value="Commander" onmouseover="overButton('envoiForm')" onmouseout="notOverButton('envoiForm')" id="envoiForm" class="action">
-		<input type="button" value="afficher toutes les commandes" onmouseover="overButton('cmd_display')" onmouseout="notOverButton('cmd_display')" onclick="redirect_display_cmd()" id="cmd_display" class="action">
+		<div class="buttons">
+			<input type="submit" value="Valider la commande" id="envoiForm" class="action">
+			<input type="button" value="afficher toutes les commandes" onclick="redirect_display_cmd()" id="cmd_display" class="action">
+		</div>
     </form>
 	
 	
@@ -117,20 +119,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
 		var nom = document.getElementById("saisieNom").value;
 		var textAffiche = document.getElementById("messageBienvenue");
 		textAffiche.innerHTML = "Bonjour " + prenom + " " + nom + " !";
-	}
-	
-	// fonctions quand on passe la souris sur un bouton, et quand on en sort
-	function overButton(elmtID){
-		button = document.getElementById(elmtID);
-		button.style.filter = "brightness(1.1)";
-		button.style.border = "solid 2px #6b616f"
-		button.style.padding = "8px 28px";
-	}
-	function notOverButton(elmtID){
-		button = document.getElementById(elmtID);
-		button.style.filter = "brightness(1)";
-		button.style.border = "none";
-		button.style.padding = "10px 30px";
 	}
 	
 	function redirect_display_cmd(){
