@@ -59,8 +59,13 @@ form > *{
 }
 
 /* les boutons cliquables */
+.buttons-container{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
 input.action {
-	padding: 10px 30px;
+	padding: 1em 5em;
 	background-color: #B3A2B9;
 	border: none;
 	border-radius: 5px;
