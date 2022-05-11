@@ -1,3 +1,10 @@
+<!-- 
+Auteur : Jules Tennenbaum
+Date : 05/2022
+Projet : page Dronépik NSI première - HTML/CSS/JS/PHP 
+ -->
+
+
 <?php
     
     # on récupère les données

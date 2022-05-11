@@ -1,3 +1,10 @@
+<!-- 
+Auteur : Jules Tennenbaum
+Date : 05/2022
+Projet : page Dronépik NSI première - HTML/CSS/JS/PHP 
+ -->
+
+
 <?php
 
 # pour les versions antérieures à PHP8 (pour lesquelles la fonction n'existe pas nativement), 
@@ -71,9 +78,10 @@ function lire_commande() {
 function commentaire_supplementaire() {
     $infos = lire_commande();
     $commentaire = $infos[7]; # récupère le champ du commentaire
-    $message = "<p id='messageCommentaire'>A bientot !";
+    # du style y est directement appliqué car ne fonctionne pas avec le CSS (le CSS doit être pris en compte avant le PHP)
+    $message = "<p id='messageCommentaire' style='opacity: 0.8; margin-top: 10px;'>A très vite !";
     if ($commentaire != ""){
-        $message = "<p id='messageCommentaire'>Nous avons bien pris en compte votre commentaire et vous en remercions.<br>A bientot !";
+        $message = "<p id='messageCommentaire' style='opacity: 0.8; margin-top: 10px;'>Nous avons bien pris en compte votre commentaire et vous en remercions.<br>A très vite !";
     }
     $message .= "</p>";
     return $message;
@@ -85,8 +93,9 @@ function commentaire_supplementaire() {
 <html lang="fr">
 <head>
     <meta charset='utf-8'>
-    <title>Commande</title>
+    <title>Accusé commande Dronépik</title>
     <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <link rel="icon" type="image/png" href="images/favicon.jpg" />
 </head>
 <body>
     <header>
@@ -107,7 +116,7 @@ function commentaire_supplementaire() {
     <input type="button" value="Faire une nouvelle commande" onmouseover="overButton('nouvelle_commande')" onmouseout="notOverButton('nouvelle_commande')" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
 
 	<footer>
-		<p>© Jules Tennenbaum - NSI Joliot Curie - 19/03/2022</p>
+		<p>© Jules Tennenbaum - NSI Joliot Curie - 11/05/2022</p>
 		<a href="http://jigsaw.w3.org/css-validator/check/referer">
 			<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !" />
 		</a>
