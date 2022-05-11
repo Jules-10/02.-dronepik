@@ -1,15 +1,56 @@
 <?php
 
+# pour les versions antérieures à PHP8 (pour lesquelles la fonction n'existe pas nativement), 
+# créé une fonction permettant de savoir si une chaine de cacactères est comprise dans une autre
+if (!function_exists('str_contains')) {
+    function str_contains($haystack, $needle) {
+        return $needle !== '' && mb_strpos($haystack, $needle) !== false;
+    }
+}
+
+
 function lire_commande() {
     $table = "";
-    # on lit le fichier et on ajoute ligne par ligne
+    # on lit le fichier sous forme d'une liste de chaque ligne (ne comprenant pas les "\n")
     $fichier = file("commande.csv", FILE_IGNORE_NEW_LINES);
     # on vérifie que le fichier a bien été ouvert
     if ($fichier) {
-        # tant que on arrive à lire une ligne
-        $line = $fichier[count($fichier)-2];
+        # récupère la dernière commande passée dans le fichier des commandes
+        $line = $fichier[count($fichier)-1];
+        # sépare la ligne en une liste comprenant chaque information sur la commande et l'utilisateur ayant commandé
         $fields = explode(";", $line);
-        $prix=10;
+
+        # calcul du prix
+        $prix=0;
+        # en fonction du modèle
+        if ($fields[4] == "mouche" or $fields[4] == "moustique"){
+            $prix += 1270;
+        } else {
+            $prix += 1495;
+        }
+
+        # en fonction de la résolution
+        if ($fields[5] == "1280p x 720p"){
+            $prix *= 1;
+        } elseif ($fields[5] == "1920p x 1080p"){
+            $prix *= 1.4;
+        } else {
+            $prix *= 1.9;
+        }
+
+        # en fonction des options
+        if (str_contains($fields[6], "Connexion bluetooth")){
+            $prix += 192;
+        }
+        if (str_contains($fields[6], "Détecteur de mouvements")){
+            $prix += 327;
+        }
+        if (str_contains($fields[6], "Bourdonnement réaliste")){
+            $prix += 875;
+        }   
+
+
+        # remmmplissage du tableau comprenant tout le récapitulatif de la commande
         $table = "
         <tr> <td>Nom et prénom</td> <td>{$fields[0]}</td> </tr>
         <tr> <td>Contact</td> <td>{$fields[1]}, {$fields[2]}</td> </tr>
@@ -19,7 +60,7 @@ function lire_commande() {
         <tr> <td>Résolution</td> <td>{$fields[5]}</td> </tr>
         <tr> <td>Options supplémentaires</td> <td>{$fields[6]}</td> </tr>
 
-        <tr class='doubleBorderTop'> <td>Prix</td> <td>{$prix}</td> </tr>
+        <tr class='doubleBorderTop'> <td>Prix</td> <td>{$prix} €</td> </tr>
 
         </tr>";
     }
@@ -76,8 +117,6 @@ function lire_commande() {
         <?php echo lire_commande(); ?>
 
 	</table>
-
-	<p id="msgCommentaire">Nous avons bien noté votre commentaire, et en tiendrons compte ! ;)</p>
 
     <input type="button" value="Faire une nouvelle commande" onmouseover="overButton('nouvelle_commande')" onmouseout="notOverButton('nouvelle_commande')" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
 
