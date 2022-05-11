@@ -40,6 +40,6 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
         fclose($fichier);
     }
     # on rappelle la page d'accueil
-    header("Location: affiche_cmd.php");
+    header("Location: accuse_reception.php");
 
 ?>
