@@ -67,6 +67,18 @@ function lire_commande() {
     return $table;
 }
 
+# modifie un message en fonction de si un commentaire a été laissé avec la commande
+function commentaire_supplementaire() {
+    $infos = lire_commande();
+    $commentaire = $infos[7]; # récupère le champ du commentaire
+    $message = "<p id='messageCommentaire'>A bientot !";
+    if ($commentaire != ""){
+        $message = "<p id='messageCommentaire'>Nous avons bien pris en compte votre commentaire et vous en remercions.<br>A bientot !";
+    }
+    $message .= "</p>";
+    return $message;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -84,39 +96,13 @@ function lire_commande() {
 	
     <h3> Merci pour votre commande ! Nous en accusons réception.</h3>
 	<h4>Voici un récapitulatif de toutes vos coordonnées ainsi que de la fiche technique du Dronépik :</h4>
+
 	<table id="infos">
-        <!-- <tr> 
-			<td>Nom et prénom</td>
-			<td id="noms"></td>
-		</tr>
-		<tr>
-			<td>Contact</td>
-			<td id="contact"></td>
-		</tr>
-		<tr>
-			<td>Adresse de livraison</td>
-			<td id="adresse"></td>
-		</tr>
-		<tr class="doubleBorderTop">
-			<td>Modèle commandé</td>
-			<td id="modele"></td>
-		</tr>
-		<tr>
-			<td>Résolution</td>
-			<td id="resolution"></td>
-		</tr>
-		<tr>
-			<td>Options supplémentaires</td>
-			<td id="options"></td>
-		</tr>
-		<tr class="doubleBorderTop">
-			<td>Prix</td>
-			<td id="prix"></td>
-		</tr> -->
-
         <?php echo lire_commande(); ?>
-
 	</table>
+
+    <?php echo commentaire_supplementaire(); ?>
+
 
     <input type="button" value="Faire une nouvelle commande" onmouseover="overButton('nouvelle_commande')" onmouseout="notOverButton('nouvelle_commande')" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
 
