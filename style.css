@@ -31,8 +31,10 @@ a:any-link{
     --main-padding: 4em;
     scroll-behavior: smooth;
 }
+/* style de la barre de scroll */
 ::-webkit-scrollbar{
     width: 5px;
+    height: 5px;
 }
 ::-webkit-scrollbar-track{
     background: transparent;
