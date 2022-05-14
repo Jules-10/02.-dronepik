@@ -1,0 +1,307 @@
+<!-- 
+Auteur : Jules Tennenbaum
+Date : 05/2022
+Projet : page Dronépik NSI première - HTML/CSS/JS/PHP 
+ -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Dronépik</title>
+    <link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon">
+    <!-- jQuery nécessaire pour le loader de page -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+
+
+<body>
+
+
+    <header id="header">
+        <div class="steps-progression">
+            <div class="step blanc" id="step1" onclick="change_page(2)">1</div>
+            <div class="step blanc" id="step2" onclick="change_page(3)">2</div>
+            <div class="step blanc" id="step3" onclick="change_page(4)">3</div>
+        </div>
+        <a href="liste_commandes.php" class="button admin violet" id="admin">vision admin</a>
+    </header>
+
+    <!-- loader affiché quand on refresh la page -->
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+      </div>
+
+
+    <!-- page d'accueill -->
+    <div class="main-content" id="main-page">
+        <div class="left">
+            <h1>Dronépik</h1>
+            <h2>Des drones aux capacités époustouflantes !</h2>
+            <input type="button" value="commander" class="button next-page violet" onclick="change_page(2)">
+            <img src="images/arrow.svg" class="arrow">
+        </div>
+        <img src="images/guepe.svg" alt="image de guepe" class="right round-cut-image">
+    </div>
+
+
+
+    <form action="enregistre_cmd.php" method="get">
+
+        <!-- le formulaire contenant les informations sur le drône qu'on souhaite commander -->
+        <div class="main-content" id="command-drone">
+
+            <div class="formulaire">
+                <div class="label-et-champs">
+                    <label for="modele">Modèle</label>
+                    <select name="modele" id="modele">
+                        <option value="..." id="rien" required>. . .</option>
+                        <option value="mouche" id="mouche"> mouche </option> 
+                        <option value="moustique" id="moustique"> moustique </option>
+                        <option value="guepe" id="guepe"> guêpe </option>
+                        <option value="bourdon" id="bourdon"> bourdon </option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="label-et-champs">
+                        <label for="resolutions">Résolution</label>
+                        <div id="resolutions" class="column-display">
+                            <div class="label-et-champs"><input type="radio" name="resolution" value="1280p x 720p" id="resolution1" required> <label for="resolution1">1280p x 720p</label></div>
+                            <div class="label-et-champs"><input type="radio" name="resolution" value="1920p x 1080p" id="resolution2" > <label for="resolution2">1920p x 1080p</label></div>
+                            <div class="label-et-champs"><input type="radio" name="resolution" value="4096 x 2160p" id="resolution3" > <label for="resolution3">4096 x 2160p</label></div> 
+                        </div>
+                    </div>
+                    <div class="label-et-champs">
+                        <label for="options">Options</label>
+                        <div id="options" class="column-display"> 
+                            <div class="label-et-champs"><input type="checkbox" name="option1" value="Connexion bluetooth" id="option1" > <label for="option1">Connexion bluetooth</label></div>
+                            <div class="label-et-champs"><input type="checkbox" name="option2" value="Détecteur de mouvements" id="option2" > <label for="option2">Détecteur de mouvements</label></div>
+                            <div class="label-et-champs"><input type="checkbox" name="option3" value="Bourdonnement réaliste" id="option3" > <label for="option3">Bourdonnement réaliste</label></div>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+
+            <!-- des images pour illustrer, flottant à droite du formulaire -->
+            <div id="image-bubbles">
+                <img src="images/bourdon.jpg" alt="bourdon">
+                <img src="images/guepe.jpeg" alt="guepe">
+                <img src="images/mouche.jpg" alt="mouche">
+                <img src="images/moustique.jpg" alt="moustique">
+            </div>
+
+            <!-- les boutons pour accéder à la suite du formulaire ou à la page précédenter -->
+            <div class="buttons-bottom">
+                <input type="button" value="continuer" class="button next-page bleu" onclick="change_page(3)">
+                <input type="button" value="retour" class="button previous-page rouge" onclick="change_page(1)">
+            </div>
+
+        </div>
+
+
+        <!-- la partie du formulaire demandant les informations personnelles sur l'utilisateur -->
+        <div class="main-content" id="command-personnal-infos">
+
+            <div class="formulaire">
+                <div class="row">
+                    <div class="label-et-champs"><label for="prenom">Prénom</label><input type="text" name="prenom" id="prenom" placeholder="John" required></div>
+                    <div class="label-et-champs"><label for="nom">Nom</label><input type="text" name="nom" id="nom" placeholder="Doe" required></div>
+                </div>
+
+                <div class="row">
+                    <div class="label-et-champs"><label for="email">Email</label><input type="email" name="email" id="email" placeholder="john.doe@gmail.com" required></div>
+                    <div class="label-et-champs"><label for="telephone">Téléphone</label><input type="tel" name="telephone" id="telephone" pattern="[0-9]{10}" placeholder="0299671234"></div>
+                </div>
+
+                <div class="label-et-champs">
+                    <label for="rue">Adresse</label>
+                    <div class="row">
+                        <input type="text" name="rue" id="rue" placeholder="144 Bd de Vitré" required>
+                        <input type="text" name="ville" id="ville" placeholder="RENNES" required>
+                        <input type="text" name="code-postal" id="code-postal" placeholder="35700" style="width: 12ch;" required>
+                    </div>
+                </div> 
+            </div>
+
+
+            <div class="buttons-bottom">
+                <input type="button" value="continuer" class="button next-page bleu" onclick="change_page(4);make_recap();">
+                <input type="button" value="retour" class="button previous-page rouge" onclick="change_page(2)">
+            </div>
+
+        </div>
+
+
+        <!-- affiche le récapitulatif de la commande ainsi qu'un champs pour laisser un commentaire événtuel avant de finaliser la commande.
+        Il est composé de deux colonnes sur les écrans larges, sinon d'une seule. -->
+        <div class="main-content" id="command-recap">
+            <div class="split-in-cols">
+                <div class="left">
+                    <div class="formulaire">
+                        <div class="label-et-champs">
+                            <label for="message">Laissez-nous un message si vous souhaitez</label>
+                            <textarea name="message" id="message" placeholder="Ecrivez votre message ici"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recap right label-et-champs">
+                    <label>Récapitulatif</label>
+                    <table>
+                        <tr><td>Modèle</td><td id="fill_modele">Vous n'avez pas encore choisi votre modèle</td></tr>
+                        <tr><td>Résolution</td><td id="fill_resolution">Veuillez sélectionner votre résolution au préalable</td></tr>
+                        <tr><td>Options</td><td id="fill_options">Aucune option sélectionnée</td></tr>
+                        <tr><td>Prix</td><td id="fill_prix"></td>0€</tr>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="buttons-bottom">
+                <!-- finaliser la commande -->
+                <input type="submit" value="commander" class="button commander vert">
+                <input type="button" value="retour" class="button previous-page rouge" onclick="change_page(3)">
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+    <!-- <div class="main-content" id="recu">
+        <h3>Merci pour votre commande !<br>Voici votre reçu :</h3>
+        <table>
+            <tr>
+                <td>Nom</td><td>a</td>
+            </tr>
+            <tr>
+                <td>Contact</td><td>b</td>
+            </tr>
+            <tr>
+                <td>Adresse</td><td>c</td>
+            </tr>
+            <tr>
+                <td>Modèle</td><td>d</td>
+            </tr>
+            <tr>
+                <td>Résolution</td><td>e</td>
+            </tr>
+            <tr>
+                <td>Options</td><td>f</td>
+            </tr>
+        </table>
+        <h3>A très vite !</h3>
+        <button class="button violet">nouvelle commande</button>
+    </div> -->
+
+
+    <footer id="footer">
+        <p>© Jules Tennenbaum - NSI Joliot Curie - 05/2022</p>
+    </footer>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    // gère les changements entre les pages du formulaire
+    function change_page(id){
+        var header = document.getElementById('header');
+        var admin_button = document.getElementById('admin');
+        var page1 = document.getElementById('main-page');
+        var page2 = document.getElementById('command-drone');
+        var page3 = document.getElementById('command-personnal-infos');
+        var page4 = document.getElementById('command-recap');
+        // var page5 = document.getElementById('recu');
+
+        var step1 = document.getElementById('step1');
+        var step2 = document.getElementById('step2');
+        var step3 = document.getElementById('step3');
+
+        // on affiche telle ou telle page en fonction de la page actuelle. Selon les pages, on affichera ou non le header.
+        // l'avancement en couleurs est géré ici (partie du header indiquant à quelle étape du formulaire on se trouve), par un changement de classe des cases
+        if (id == 1){
+            header.style.display="none";
+            page1.style.display="flex";
+        } else {
+            page1.style.display="none";
+            header.style.display="flex";
+            admin_button.style.display="flex";
+        }
+        if (id == 2){
+            page2.style.display="flex";
+            step1.classList = "step bleu";
+            step2.classList = "step blanc";
+            step3.classList = "step blanc";
+        } else {
+            page2.style.display="none";
+            admin_button.style.display="none";
+        }
+        if (id == 3){
+            page3.style.display="flex";
+            step1.classList = "step vert";
+            step2.classList = "step bleu";
+            step3.classList = "step blanc";
+        } else {
+            page3.style.display="none";
+        }
+        if (id == 4){
+            page4.style.display="flex";
+            step1.classList = "step vert";
+            step2.classList = "step vert";
+            step3.classList = "step bleu";
+        } else {
+            page4.style.display="none";
+        }
+        // if (id == 5){
+        //     page5.style.display="flex";
+        //     step1.classList = "step vert";
+        //     step2.classList = "step vert";
+        //     step3.classList = "step vert";
+        // } else {
+        //     page5.style.display="none";
+        // }
+    }
+
+    // complète le tableau faisant le récapitulatif de toute la commande et calcule le prix
+    function make_recap(){
+        var prix = 60;
+
+        var modele = document.getElementById('modele');
+        var fill = document.getElementById('fill_modele');
+        fill.innerHTML = modele.options[modele.selectedIndex].text;
+        prix *= modele.value.length;
+
+        if (document.getElementById('resolution1').checked){ var resolution = "1280p x 720p"; prix *= 1.2;}
+		if (document.getElementById('resolution2').checked){ var resolution = "1920p x 1280p"; prix *= 1.8;}
+		if (document.getElementById('resolution3').checked){ var resolution = "4096p x 2160p"; prix *= 3.2;}
+        fill = document.getElementById('fill_resolution');
+        fill.innerHTML = resolution;
+
+        var options = [];
+        if (document.getElementById('option1').checked){ options.push("Connexion bluetooth"); prix += 145;}
+        if (document.getElementById('option2').checked){ options.push("Détecteur de mouvements"); prix += 329;}
+		if (document.getElementById('option3').checked){ options.push("Bourdonnement réaliste"); prix += 872;}
+        fill = document.getElementById('fill_options');
+        fill.innerHTML = options.join(' ; ');
+    
+        prix = prix.toString() + "€";
+        fill = document.getElementById('fill_prix');
+        fill.innerHTML = prix;
+    }   
+
+
+    // page loading animation
+    $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+    });
+</script>

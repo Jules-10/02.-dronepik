@@ -28,32 +28,28 @@ function lire_commande() {
         $fields = explode(";", $line);
 
         # calcul du prix
-        $prix=0;
-        # en fonction du modèle
-        if ($fields[4] == "mouche" or $fields[4] == "moustique"){
-            $prix += 1270;
-        } else {
-            $prix += 1495;
-        }
+        $prix=60;
+        # en fonction du modèle (en fonction de la longueur du nom du modèle)
+        $prix *= strlen($fields[4]);
 
         # en fonction de la résolution
         if ($fields[5] == "1280p x 720p"){
-            $prix *= 1;
+            $prix *= 1.2;
         } elseif ($fields[5] == "1920p x 1080p"){
-            $prix *= 1.4;
+            $prix *= 1.8;
         } else {
-            $prix *= 1.9;
+            $prix *= 3.2;
         }
 
         # en fonction des options
         if (str_contains($fields[6], "Connexion bluetooth")){
-            $prix += 192;
+            $prix += 145;
         }
         if (str_contains($fields[6], "Détecteur de mouvements")){
-            $prix += 327;
+            $prix += 329;
         }
         if (str_contains($fields[6], "Bourdonnement réaliste")){
-            $prix += 875;
+            $prix += 872;
         }   
 
 
@@ -94,18 +90,19 @@ function commentaire_supplementaire() {
     <?php include 'style.css' ?>
 </style>
 
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset='utf-8'>
     <title>Accusé commande Dronépik</title>
     <link rel="icon" type="image/png" href="images/favicon.jpg" />
+    <!-- jQuery nécessaire pour le loader de page -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
     <header>
-        <p id="pub"><img  src="./images/pub.png" alt="bannière Dronépik"></p>    
 		<h1>Accusé de réception</h1>
 	</header>
 
@@ -123,13 +120,10 @@ function commentaire_supplementaire() {
     <?php echo commentaire_supplementaire(); ?>
 
 
-    <input type="button" value="Faire une nouvelle commande" onclick="nouvelleCommande()" id="nouvelle_commande" class="action">
+    <a href="dronepik.html" class="button violet">nouvelle commande</a>
 
 	<footer>
-		<p>© Jules Tennenbaum - NSI Joliot Curie - 11/05/2022</p>
-		<a href="http://jigsaw.w3.org/css-validator/check/referer">
-			<img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !" />
-		</a>
+		<p>© Jules Tennenbaum - NSI Joliot Curie - 05/2022</p>
 	</footer>
 
 
@@ -141,10 +135,6 @@ function commentaire_supplementaire() {
         $(".loader-wrapper").fadeOut("slow");
     });
 
-	// redirection vers la page principale
-	function nouvelleCommande(){
-		document.location.href="dronepik.php";
-	}
 </script>
 
 </body>

@@ -11,10 +11,10 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
     $nom = $_GET['nom'] . " " . $_GET['prenom'];
 	$email = $_GET['email'];
 	$phone_number = $_GET['telephone'];
-	$adresse = $_GET['adresse_rue'] . " " . $_GET['adresse_codepostal'] . " " . $_GET['adresse_ville'];
-	$modele = $_GET['modeles'];
+	$adresse = $_GET['rue'] . " " . $_GET['code-postal'] . " " . $_GET['ville'];
+	$modele = $_GET['modele'];
     $resolution = $_GET['resolution'];
-    $commentaire = $_GET['commentaire']; 
+    $commentaire = $_GET['message']; 
 
     # on récupère les options en plaçant une virgule entre chaque
     $options = "";
@@ -28,6 +28,7 @@ Projet : page Dronépik NSI première - HTML/CSS/JS/PHP
         }
     }
 	
+    // ces informations sont nécessaire pour mener à bien une commande. Les autres sont considérées facultatives
 	if ($nom != "" and $email != "" and $adresse != "" and $modele != "" and $resolution != "") {
         # on ouvre le fichier commandes.csv en mode ajout
         $fichier = fopen("commande.csv", "a");
